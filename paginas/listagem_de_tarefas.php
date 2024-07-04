@@ -1,56 +1,46 @@
-<?php 
-// Conexão
-try {
-    $mysqli = new mysqli("localhost", "root", "", "todolist", 3306);
-} catch(Exception $e){
-    die('Não consegui me conectar nessa bagaça!!!');
-}
+<?php
 
-// Executar o SQL
-$result = $mysqli->query("SELECT * FROM tarefas");
+include "./conexao.php";
 
-// Iterar sobre os registros
-// while($row = $result->fetch_assoc()) {
-//     echo $row['id'] . " " . $row['tarefa'] . PHP_EOL;
-// }
+
 
 ?>
 
 
 <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="d-flex justify-content-between align-items-end">
-                        <h2 class="text-primary mt-5">Tarefas cadastradas</h1>
-                        <a href="index.php?id=1" class="btn btn-primary">Limpar tudo</a>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between align-items-end">
+                <h2 class="text-primary mt-5">Tarefas cadastradas</h1>
+                    <a href="index.php?id=1" class="btn btn-primary">Limpar tudo</a>
 
-                    </div>
+            </div>
 
-                        <table class="table mt-4 table-hover table-bordered">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Tarefa</th>
-                                <th scope="col">Data</th>
-                                <th scope="col">Ação</th>
-                            </tr>
+            <table class="table mt-4 table-hover table-bordered">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tarefa</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Ação</th>
+                </tr>
 
-                            
-                                <?php 
-                                
-                                while($row = $result->fetch_assoc()) {
-                                    
-                                    echo "<td> ".$row['id']."</td>";
-                                    echo "<td> ".$row['tarefa']."</td>";
-                                    echo "<td> ".$row['data']."</td>";
-                                    echo "<td><a href='#'>Excluir </a></td>";
-                                    echo "<tr>";
-                                }
-                        
-                              
-                                ?>
-                               
-                                
 
-                            </tr>
-                        </table>
-</div>
+                <?php
+
+                while ($row = $result->fetch_assoc()) {
+
+                    echo "<td> " . $row['id'] . "</td>";
+                    echo "<td> " . $row['tarefa'] . "</td>";
+                    echo "<td> " . $row['data'] . "</td>";
+                    echo "<td><a href='#'>Excluir </a></td>";
+                    echo "<tr>";
+                }
+
+
+                ?>
+
+
+
+                </tr>
+            </table>
+        </div>
