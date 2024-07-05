@@ -7,7 +7,7 @@ $tarefaBuscada = $_POST['buscar'] ?? "";
 if(empty($tarefaBuscada)){
     $result = $mysqli->query("SELECT * FROM tarefas");
 } else {
-    $tarefaBuscada = $mysqli->real_escape_string($tarefaBuscada);
+    $tarefaBuscada = strtolower($tarefaBuscada);
     $result = $mysqli->query("SELECT * FROM tarefas WHERE tarefa LIKE '%$tarefaBuscada%'");
     
 }
