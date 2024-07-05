@@ -1,3 +1,15 @@
+<?php 
+
+include "./conexao.php";
+
+$result = $mysqli->query("SELECT tarefa FROM tarefas");
+
+$tarefaBuscada = $_POST['buscar'] ?? "";
+
+
+?>
+
+
 <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -8,5 +20,22 @@
                             <input type="submit" class="btn btn-primary mt-2" value="Buscar tarefa">
                         </div>
                     </form>
+
+                    <?php 
+                    
+                    while($row = $result->fetch_assoc()){
+                        $tarefas = $row;
+                        foreach($tarefas as $task){
+                           if(str_contains(strtolower($task), strtolower($tarefaBuscada))){
+                                // $result2 = $mysqli->query("SELECT * FROM tarefas WHERE tarefa = $task;");
+                            }
+                           }
+                          
+                    }
+                    
+                    
+                    ?>
+
+
         </div>
 </div>
