@@ -2,6 +2,7 @@
 
 include "./conexao.php";
 
+$result = $mysqli->query("SELECT * FROM tarefas");
 
 
 ?>
@@ -31,7 +32,7 @@ include "./conexao.php";
 
                     echo "<td> " . $row['id'] . "</td>";
                     echo "<td> " . $row['tarefa'] . "</td>";
-                    echo "<td> " . $row['data'] . "</td>";
+                    echo "<td> " . $row['dataTarefa'] . "</td>";
                     echo "<td><a href='#'>Excluir </a></td>";
                     echo "<tr>";
                 }

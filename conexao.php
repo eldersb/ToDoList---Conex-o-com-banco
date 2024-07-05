@@ -6,6 +6,5 @@ try {
     die('Não consegui me conectar nessa bagaça!!!');
 }
 
-$result = $mysqli->query("SELECT * FROM tarefas");
 
 ?>
