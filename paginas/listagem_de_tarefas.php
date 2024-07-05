@@ -29,11 +29,11 @@ $result = $mysqli->query("SELECT * FROM tarefas");
                 <?php
 
                 while ($row = $result->fetch_assoc()) {
-
+                    echo "<tr>";
                     echo "<td> " . $row['id'] . "</td>";
                     echo "<td> " . $row['tarefa'] . "</td>";
                     echo "<td> " . $row['dataTarefa'] . "</td>";
-                    echo "<td><a href='#'>Excluir </a></td>";
+                    echo "<td><a onclick='confirmarExclusao('') href='#'>Excluir </a></td>";
                     echo "<tr>";
                 }
 
