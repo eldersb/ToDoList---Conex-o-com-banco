@@ -2,6 +2,7 @@
 
 include "./conexao.php";
 
+
 $result = $mysqli->query("SELECT * FROM tarefas");
 
 
@@ -33,15 +34,38 @@ $result = $mysqli->query("SELECT * FROM tarefas");
                     echo "<td> " . $row['id'] . "</td>";
                     echo "<td> " . $row['tarefa'] . "</td>";
                     echo "<td> " . $row['dataTarefa'] . "</td>";
-                    echo "<td><a onclick='confirmarExclusao('') href='#'>Excluir </a></td>";
+                    echo "<td><a href='index.php?delete_id=$row[id]'>Excluir </a></td>";
                     echo "<tr>";
                 }
+
+                if(isset($_GET['delete_id'])){
+                    $delete_id = $_GET['delete_id'];
+        
+                    echo $delete_id;
+
+                     $result = $mysqli->query("DELETE FROM tarefas WHERE id LIKE $delete_id");
+
+                     header('Location: index.php');
+                     exit();
+
+                } 
 
 
                 ?>
 
 
-
                 </tr>
             </table>
         </div>
+
+        
+    <script>
+
+function atualizarPagina(){
+    location.reload();
+        
+   } 
+
+
+
+</script>
