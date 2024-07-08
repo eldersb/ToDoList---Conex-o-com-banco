@@ -3,14 +3,18 @@
 include "./conexao.php";
 
 $tarefaBuscada = $_POST['buscar'] ?? "";
+$result = null;
+$numeroLinhas = null;
 
-if(empty($tarefaBuscada)){
-    $result = $mysqli->query("SELECT * FROM tarefas");
-} else {
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if(!empty($tarefaBuscada)){
     $tarefaBuscada = strtolower($tarefaBuscada);
     $result = $mysqli->query("SELECT * FROM tarefas WHERE tarefa LIKE '%$tarefaBuscada%'");
-    
+    $numeroLinhas = $result->num_rows;
 }
+}
+
 
 ?>
 
@@ -35,14 +39,14 @@ if(empty($tarefaBuscada)){
                 </tr>
 
                     <?php 
-                     
-                     if ($result->num_rows > 0) {
+                    
+                     if ($numeroLinhas > 0) {
                         while($row = $result->fetch_assoc()){
                             echo "<tr>";
                             echo "<td> " . $row['id'] . "</td>";
                             echo "<td> " . $row['tarefa'] . "</td>";
                             echo "<td> " . $row['dataTarefa'] . "</td>";
-                            echo "<td><a onclick='confirmarExclusao('') href='#'>Excluir </a></td>";
+                            echo "<td><a href='#'>Excluir </a></td>";
                             echo "<tr>";
                         }
                     }

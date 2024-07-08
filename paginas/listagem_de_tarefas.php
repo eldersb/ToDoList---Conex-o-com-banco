@@ -61,10 +61,7 @@ $result = $mysqli->query("SELECT * FROM tarefas");
         
     <script>
 
-function atualizarPagina(){
-    location.reload();
-        
-   } 
+
 
 
 

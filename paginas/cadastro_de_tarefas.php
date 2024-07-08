@@ -4,9 +4,22 @@ include "./conexao.php";
 
 $tituloTarefa = $_POST['titulo'] ?? "";
 $dataTarefa = $_POST['date'] ?? "";
+$erroTitulo = false;
+$erroData = false;
 
-if($tituloTarefa && $dataTarefa != ""){
-    $inserir = $mysqli->query("INSERT INTO tarefas (tarefa, dataTarefa) VALUES ('$tituloTarefa', '$dataTarefa');");
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (empty($tituloTarefa)) {
+        $erroTitulo = true;
+    }
+
+    if (empty($dataTarefa)) {
+        $erroData = true;
+    }
+
+    if($tituloTarefa && $dataTarefa != ""){
+        $inserir = $mysqli->query("INSERT INTO tarefas (tarefa, dataTarefa) VALUES ('$tituloTarefa', '$dataTarefa');");
+    }
+
 }
 
 
@@ -36,14 +49,14 @@ if($tituloTarefa && $dataTarefa != ""){
                     Tarefa cadastrada com sucesso!
                 </div>
             <?php endif;?>
-            <?php if (empty($tituloTarefa)): ?>
+            <?php if ($erroTitulo): ?>
                 <div class="alert alert-danger mt-3" role="alert">
-                    O <strong>título da tarefa</strong> deve ser preenchidos!!!
+                    O <strong>título da tarefa</strong> deve ser preenchido!!!
                 </div>
             <?php endif;?>
-            <?php if (empty($dataTarefa)): ?>
+            <?php if ($erroData): ?>
                 <div class="alert alert-danger mt-3" role="alert">
-                    A <strong>data da tarefa</strong> devem ser preenchidos!!!
+                    A <strong>data da tarefa</strong> deve ser preenchido!!!
                 </div>
             <?php endif;?>
         </div>
